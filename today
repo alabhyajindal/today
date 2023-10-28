@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+CONFIG_FILE="$HOME/.today.conf"
+
+# Exit if missing configuration
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo -e "Missing configuration file.\n"
+  exit 1
+fi
+
+# Exit if missing directory
+if [ ! -f "$DIRECTORY" ]; then
+  echo -e "Missing directory.\n"
+  exit 1
+fi
+
+# Load configuration file
+if [ -f "$CONFIG_FILE" ]; then
+  # shellcheck source=/home/alabhya/.today.conf
+  source "$CONFIG_FILE"
+fi
+
+# Check if the directory exists
+if [ -d "$DIRECTORY" ]; then
+  FILE_PATH="$DIRECTORY/""$FILE_NAME"
+
+  if [ -f "$FILE_PATH" ]; then
+    "$EDITOR" "$FILE_PATH" 
+    exit 0
+  fi
+
+  echo -e "$TEMPLATE" > "$FILE_PATH"
+  "$EDITOR" "$FILE_PATH" 
+  exit 0
+fi
+
