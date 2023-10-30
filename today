@@ -33,13 +33,13 @@ if [ -d "$DIRECTORY" ]; then
   # Open note and exit if note exits
   if [ -d "$MONTH_PATH" ]; then
     if [ -f "$FILE_PATH" ]; then
-      "$EDITOR" "$FILE_PATH" 
+      "${EDITOR:-vim}" "$FILE_PATH"
       exit 0
     fi
 
     # Create and open note if it doesn't exist
     echo -e "$TEMPLATE" > "$FILE_PATH"
-    "$EDITOR" "$FILE_PATH" 
+    "${EDITOR:-vim}" "$FILE_PATH"
     exit 0
   fi
 fi
