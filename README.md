@@ -1,10 +1,6 @@
 # today
 
-today is a tool to create daily notes.
-
-- Create daily notes
-- Customizable
-- Bring your own editor
+today is a simple and customizable tool for creating daily notes in your terminal, using your preferred text editor.
 
 ### Installation
 
@@ -25,5 +21,4 @@ Or, create a directory elsewhere and specify it in `~/.today.conf`
 
 ### Usage
 
-Run `today` in your terminal to open today's daily note.
-
+To create and open today's daily note in your terminal, use the command `today`. The default editor is `vim`. Your note will be stored in a directory named after the current month and year (e.g., 'November 2023'). Simply run `today` again to reopen your daily note.
