@@ -10,7 +10,7 @@ fi
 
 # Load configuration file
 if [ -f "$CONFIG_FILE" ]; then
-  # shellcheck source=/home/alabhya/.today.conf
+  # shellcheck source=/dev/null
   source "$CONFIG_FILE"
 fi
 
