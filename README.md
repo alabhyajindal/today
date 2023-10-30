@@ -1,8 +1,8 @@
 # today
 
-today is a tool to create and manage daily notes.
+today is a tool to create daily notes.
 
-- Create and organise notes
+- Create daily notes
 - Customizable
 - Bring your own editor
 
@@ -10,7 +10,7 @@ today is a tool to create and manage daily notes.
 
 ```
 curl -o ~/.today.conf https://raw.githubusercontent.com/alabhyajindal/today/main/.today.conf
-curl -o /usr/local/bin https://raw.githubusercontent.com/alabhyajindal/today/main/today
+curl -o /usr/local/bin/today https://raw.githubusercontent.com/alabhyajindal/today/main/today
 chmod +x /usr/local/bin/today
 ```
 
