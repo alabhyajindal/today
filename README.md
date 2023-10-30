@@ -14,5 +14,16 @@ curl -o /usr/local/bin https://raw.githubusercontent.com/alabhyajindal/today/mai
 chmod +x /usr/local/bin/today
 ```
 
-By default, the `Vault` directory will be used to store your daily notes. Create this directory and run `today`. Or create a new empty directory elsewhere and specify it's location in `.today.conf`.
+Create a directory for your daily notes:
+
+```
+mkdir -p ~/Documents/Journal
+```
+
+Or, create a directory elsewhere and specify it in `~/.today.conf`
+
+
+### Usage
+
+Run `today` in your terminal to open today's daily note.
 

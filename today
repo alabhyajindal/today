@@ -8,29 +8,39 @@ if [ ! -f "$CONFIG_FILE" ]; then
   exit 1
 fi
 
-# Exit if missing directory
-if [ ! -f "$DIRECTORY" ]; then
-  echo -e "Missing directory.\n"
-  exit 1
-fi
-
 # Load configuration file
 if [ -f "$CONFIG_FILE" ]; then
   # shellcheck source=/home/alabhya/.today.conf
   source "$CONFIG_FILE"
 fi
 
+# Exit if missing directory
+if [ ! -d "$DIRECTORY" ]; then
+  echo -e "Missing directory.\n"
+  exit 1
+fi
+
 # Check if the directory exists
 if [ -d "$DIRECTORY" ]; then
-  FILE_PATH="$DIRECTORY/""$FILE_NAME"
+  MONTH_PATH="$DIRECTORY/""$MONTH_DIR_NAME"
+  FILE_PATH="$DIRECTORY/""$MONTH_DIR_NAME/""$FILE_NAME"
 
-  if [ -f "$FILE_PATH" ]; then
+  # Create month directory if missing
+  if [ ! -d "$MONTH_PATH" ]; then
+    mkdir -p "$MONTH_PATH"
+  fi
+
+  # Open note and exit if note exits
+  if [ -d "$MONTH_PATH" ]; then
+    if [ -f "$FILE_PATH" ]; then
+      "$EDITOR" "$FILE_PATH" 
+      exit 0
+    fi
+
+    # Create and open note if it doesn't exist
+    echo -e "$TEMPLATE" > "$FILE_PATH"
     "$EDITOR" "$FILE_PATH" 
     exit 0
   fi
-
-  echo -e "$TEMPLATE" > "$FILE_PATH"
-  "$EDITOR" "$FILE_PATH" 
-  exit 0
 fi
 
