@@ -32,14 +32,12 @@ if [ -d "$DIRECTORY" ]; then
   mkdir -p "$MONTH_PATH"
 
   # Open note and exit if note exits
-  if [ -d "$MONTH_PATH" ]; then
-    if [ -f "$FILE_PATH" ]; then
-      exec "${EDITOR:-vim}" "$FILE_PATH"
-    fi
-
-    # Create and open note if it doesn't exist
-    printf '%s' "$TEMPLATE" > "$FILE_PATH"
+  if [ -f "$FILE_PATH" ]; then
     exec "${EDITOR:-vim}" "$FILE_PATH"
   fi
+
+  # Create and open note if it doesn't exist
+  printf '%s' "$TEMPLATE" > "$FILE_PATH"
+  exec "${EDITOR:-vim}" "$FILE_PATH"
 fi
 
