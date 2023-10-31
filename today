@@ -1,46 +1,30 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 CONFIG_FILE="$HOME/.today.conf"
 
-# Exit if missing configuration
-if [ ! -f "$CONFIG_FILE" ]; then
-  echo -e "Missing configuration file.\n"
-  exit 1
+# Exit on errors
+set -e
+
+# Load configuration file (the source/. command will handle
+# the error message if configuration file is missing)
+# shellcheck source=/dev/null
+. "$CONFIG_FILE"
+
+# Create potentially missing directories
+mkdir -p "$DIRECTORY"
+MONTH_PATH="$DIRECTORY/$MONTH_DIR_NAME"
+mkdir -p "$MONTH_PATH"
+FILE_PATH="$DIRECTORY/$MONTH_DIR_NAME/$FILE_NAME"
+
+# Create note if is doesn't exist
+if [ ! -f "$FILE_PATH" ]; then
+  cat <<EOF >"$FILE_PATH"
+$TEMPLATE
+
+EOF
 fi
 
-# Load configuration file
-if [ -f "$CONFIG_FILE" ]; then
-  # shellcheck source=/dev/null
-  source "$CONFIG_FILE"
-fi
-
-# Exit if missing directory
-if [ ! -d "$DIRECTORY" ]; then
-  echo -e "Missing directory.\n"
-  exit 1
-fi
-
-# Check if the directory exists
-if [ -d "$DIRECTORY" ]; then
-  MONTH_PATH="$DIRECTORY/""$MONTH_DIR_NAME"
-  FILE_PATH="$DIRECTORY/""$MONTH_DIR_NAME/""$FILE_NAME"
-
-  # Create month directory if missing
-  if [ ! -d "$MONTH_PATH" ]; then
-    mkdir -p "$MONTH_PATH"
-  fi
-
-  # Open note and exit if note exits
-  if [ -d "$MONTH_PATH" ]; then
-    if [ -f "$FILE_PATH" ]; then
-      "${EDITOR:-vim}" "$FILE_PATH"
-      exit 0
-    fi
-
-    # Create and open note if it doesn't exist
-    echo -e "$TEMPLATE" > "$FILE_PATH"
-    "${EDITOR:-vim}" "$FILE_PATH"
-    exit 0
-  fi
-fi
+# Open [new or existing] note, and
+# let the editor handle the exit code
+exec "${EDITOR:-vim}" "$FILE_PATH"
 
