@@ -21,4 +21,4 @@ Or, create a directory elsewhere and specify it in `~/.today.conf`
 
 ### Usage
 
-To create and open today's daily note in your terminal, use the command `today`. Your default text editor will be used. Your note will be stored in a directory named after the current month and year (e.g., 'November 2023'). Simply run `today` again to reopen your daily note.
+To create and open today's daily note in your terminal, use the command `today`. Your default text editor, as indicated by the environment variable `$EDITOR`, will be used. If `$EDITOR` is unset, `vim` will be used. Your note will be stored in a directory named after the current month and year (e.g., 'November 2023'). Simply run `today` again to reopen your daily note.
