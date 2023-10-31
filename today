@@ -4,7 +4,7 @@ CONFIG_FILE="$HOME/.today.conf"
 
 # Exit if missing configuration
 if [ ! -f "$CONFIG_FILE" ]; then
-  echo "Missing configuration file."
+  echo "Missing configuration file." >&2
   exit 1
 fi
 
@@ -16,7 +16,7 @@ fi
 
 # Exit if missing directory
 if [ ! -d "$DIRECTORY" ]; then
-  echo "Missing directory."
+  echo "Missing directory." >&2
   exit 1
 fi
 
