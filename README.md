@@ -10,14 +10,7 @@ curl -o /usr/local/bin/today https://raw.githubusercontent.com/alabhyajindal/tod
 chmod +x /usr/local/bin/today
 ```
 
-Create a directory for your daily notes:
-
-```
-mkdir -p ~/Documents/Journal
-```
-
-Or, create a directory elsewhere and specify it in `~/.today.conf`
-
+By default `today` will create and use the directory `~/Documents/Journal/` for your daily notes, but you could use or create another directory and specify it in `~/.today.conf`.
 
 ### Usage
 
