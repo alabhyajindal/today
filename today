@@ -2,6 +2,9 @@
 
 CONFIG_FILE="$HOME/.today.conf"
 
+# Exit on errors
+set -e
+
 # Exit if missing configuration
 if [ ! -f "$CONFIG_FILE" ]; then
   echo "Missing configuration file." >&2
