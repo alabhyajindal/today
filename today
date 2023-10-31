@@ -12,10 +12,8 @@ if [ ! -f "$CONFIG_FILE" ]; then
 fi
 
 # Load configuration file
-if [ -f "$CONFIG_FILE" ]; then
-  # shellcheck source=/dev/null
-  . "$CONFIG_FILE"
-fi
+# shellcheck source=/dev/null
+. "$CONFIG_FILE"
 
 # Create potentially missing directories
 mkdir -p "$DIRECTORY"
