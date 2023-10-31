@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 CONFIG_FILE="$HOME/.today.conf"
 
@@ -11,7 +11,7 @@ fi
 # Load configuration file
 if [ -f "$CONFIG_FILE" ]; then
   # shellcheck source=/dev/null
-  source "$CONFIG_FILE"
+  . "$CONFIG_FILE"
 fi
 
 # Exit if missing directory
