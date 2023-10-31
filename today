@@ -17,24 +17,18 @@ if [ -f "$CONFIG_FILE" ]; then
   . "$CONFIG_FILE"
 fi
 
-# Exit if missing directory
-if [ ! -d "$DIRECTORY" ]; then
-  echo "Missing directory." >&2
-  exit 1
-fi
-
+# Create potentially missing directories
+mkdir -p "$DIRECTORY"
 MONTH_PATH="$DIRECTORY/$MONTH_DIR_NAME"
+mkdir -p "$MONTH_PATH"
 FILE_PATH="$DIRECTORY/$MONTH_DIR_NAME/$FILE_NAME"
 
-# Create month directory if missing
-mkdir -p "$MONTH_PATH"
-
-# Open note and exit if note exits
-if [ -f "$FILE_PATH" ]; then
-  exec "${EDITOR:-vim}" "$FILE_PATH"
+# Create note if is doesn't exist
+if [ ! -f "$FILE_PATH" ]; then
+  printf '%s' "$TEMPLATE" > "$FILE_PATH"
 fi
 
-# Create and open note if it doesn't exist
-printf '%s' "$TEMPLATE" > "$FILE_PATH"
+# Open [new or existing] note, and
+# let the editor handle the exit code
 exec "${EDITOR:-vim}" "$FILE_PATH"
 
