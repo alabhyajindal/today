@@ -5,13 +5,8 @@ CONFIG_FILE="$HOME/.today.conf"
 # Exit on errors
 set -e
 
-# Exit if missing configuration
-if [ ! -f "$CONFIG_FILE" ]; then
-  echo "Missing configuration file." >&2
-  exit 1
-fi
-
-# Load configuration file
+# Load configuration file (the source/. command will handle
+# the error message if configuration file is missing)
 # shellcheck source=/dev/null
 . "$CONFIG_FILE"
 
@@ -23,7 +18,10 @@ FILE_PATH="$DIRECTORY/$MONTH_DIR_NAME/$FILE_NAME"
 
 # Create note if is doesn't exist
 if [ ! -f "$FILE_PATH" ]; then
-  printf '%s' "$TEMPLATE" > "$FILE_PATH"
+  cat <<EOF >"$FILE_PATH"
+$TEMPLATE
+
+EOF
 fi
 
 # Open [new or existing] note, and
