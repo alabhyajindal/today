@@ -22,8 +22,8 @@ fi
 
 # Check if the directory exists
 if [ -d "$DIRECTORY" ]; then
-  MONTH_PATH="$DIRECTORY/""$MONTH_DIR_NAME"
-  FILE_PATH="$DIRECTORY/""$MONTH_DIR_NAME/""$FILE_NAME"
+  MONTH_PATH="$DIRECTORY/$MONTH_DIR_NAME"
+  FILE_PATH="$DIRECTORY/$MONTH_DIR_NAME/$FILE_NAME"
 
   # Create month directory if missing
   if [ ! -d "$MONTH_PATH" ]; then
