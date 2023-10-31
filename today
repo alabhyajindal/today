@@ -26,21 +26,17 @@ if [ -d "$DIRECTORY" ]; then
   FILE_PATH="$DIRECTORY/$MONTH_DIR_NAME/$FILE_NAME"
 
   # Create month directory if missing
-  if [ ! -d "$MONTH_PATH" ]; then
-    mkdir -p "$MONTH_PATH"
-  fi
+  mkdir -p "$MONTH_PATH"
 
   # Open note and exit if note exits
   if [ -d "$MONTH_PATH" ]; then
     if [ -f "$FILE_PATH" ]; then
-      "${EDITOR:-vim}" "$FILE_PATH"
-      exit 0
+      exec "${EDITOR:-vim}" "$FILE_PATH"
     fi
 
     # Create and open note if it doesn't exist
     printf '%s' "$TEMPLATE" > "$FILE_PATH"
-    "${EDITOR:-vim}" "$FILE_PATH"
-    exit 0
+    exec "${EDITOR:-vim}" "$FILE_PATH"
   fi
 fi
 
