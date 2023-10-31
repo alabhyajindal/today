@@ -38,7 +38,7 @@ if [ -d "$DIRECTORY" ]; then
     fi
 
     # Create and open note if it doesn't exist
-    echo -e "$TEMPLATE" > "$FILE_PATH"
+    printf '%s' "$TEMPLATE" > "$FILE_PATH"
     "${EDITOR:-vim}" "$FILE_PATH"
     exit 0
   fi
